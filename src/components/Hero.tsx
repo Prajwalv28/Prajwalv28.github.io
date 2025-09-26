@@ -47,13 +47,14 @@ const Hero = () => {
 
   const handleChatOpen = () => {
     // AI Chat functionality will be implemented with Supabase integration
-    console.log("Opening AI chat...");
+    // console.log("Opening AI chat...");
+    window.dispatchEvent(new CustomEvent('openAIChat'));
   };
 
   const handleDownloadResume = () => {
     // Create and trigger download
     const link = document.createElement('a');
-    link.href = 'public/Prajwal_Venkatesh_Resume_.pdf';
+    link.href = '/Prajwal_Venkatesh_Resume_.pdf';
     link.download = 'Prajwal_Venkatesh_Resume.pdf';
     document.body.appendChild(link);
     link.click();

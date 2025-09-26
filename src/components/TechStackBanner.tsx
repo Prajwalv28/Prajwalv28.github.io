@@ -1,35 +1,53 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
-import pythonLogo from "@/assets/tech-logos/python.svg";
-import mysqlLogo from "@/assets/tech-logos/mysql.svg";
-import awsLogo from "@/assets/tech-logos/aws.svg";
-import azureLogo from "@/assets/tech-logos/azure.svg";
-import tensorflowLogo from "@/assets/tech-logos/tensorflow.svg";
-import rLogo from "@/assets/tech-logos/r.svg";
-import powerbiLogo from "@/assets/tech-logos/powerbi.svg";
-import tableauLogo from "@/assets/tech-logos/tableau.svg";
-import gitLogo from "@/assets/tech-logos/git.svg";
-import sklearnLogo from "@/assets/tech-logos/sklearn.svg";
-import pandasLogo from "@/assets/tech-logos/pandas.svg";
-import pytorchLogo from "@/assets/tech-logos/pytorch.svg";
-import excelLogo from "@/assets/tech-logos/excel.svg";
+// import pythonLogo from "@/assets/tech-logos/python.svg";
+// import mysqlLogo from "@/assets/tech-logos/mysql.svg";
+// import awsLogo from "@/assets/tech-logos/aws.svg";
+// import azureLogo from "@/assets/tech-logos/azure.svg";
+// import tensorflowLogo from "@/assets/tech-logos/tensorflow.svg";
+// import rLogo from "@/assets/tech-logos/r.svg";
+// import powerbiLogo from "@/assets/tech-logos/powerbi.svg";
+// import tableauLogo from "@/assets/tech-logos/tableau.svg";
+// import gitLogo from "@/assets/tech-logos/git.svg";
+// import sklearnLogo from "@/assets/tech-logos/sklearn.svg";
+// import pandasLogo from "@/assets/tech-logos/pandas.svg";
+// import pytorchLogo from "@/assets/tech-logos/pytorch.svg";
+// import excelLogo from "@/assets/tech-logos/excel.svg";
+
+// const techStacks = [
+//   { name: "Python", category: "language", color: "bg-gradient-hero", logo: pythonLogo },
+//   { name: "SQL", category: "database", color: "bg-gradient-data", logo: mysqlLogo },
+//   { name: "R", category: "language", color: "bg-gradient-ai", logo: rLogo },
+//   { name: "Power BI", category: "visualization", color: "bg-gradient-hero", logo: powerbiLogo },
+//   { name: "Tableau", category: "visualization", color: "bg-gradient-data", logo: tableauLogo },
+//   { name: "Excel", category: "tool", color: "bg-gradient-ai", logo: excelLogo },
+//   { name: "AWS", category: "cloud", color: "bg-gradient-hero", logo: awsLogo },
+//   { name: "Azure", category: "cloud", color: "bg-gradient-data", logo: azureLogo },
+//   { name: "MySQL", category: "database", color: "bg-gradient-ai", logo: mysqlLogo },
+//   { name: "Git", category: "tool", color: "bg-gradient-hero", logo: gitLogo },
+//   { name: "Scikit-learn", category: "ml", color: "bg-gradient-data", logo: sklearnLogo },
+//   { name: "TensorFlow", category: "ml", color: "bg-gradient-ai", logo: tensorflowLogo },
+//   { name: "Pandas", category: "ml", color: "bg-gradient-hero", logo: pandasLogo },
+//   { name: "PyTorch", category: "ml", color: "bg-gradient-data", logo: pytorchLogo }
+// ];
+
 
 const techStacks = [
-  { name: "Python", category: "language", color: "bg-gradient-hero", logo: pythonLogo },
-  { name: "SQL", category: "database", color: "bg-gradient-data", logo: mysqlLogo },
-  { name: "R", category: "language", color: "bg-gradient-ai", logo: rLogo },
-  { name: "Power BI", category: "visualization", color: "bg-gradient-hero", logo: powerbiLogo },
-  { name: "Tableau", category: "visualization", color: "bg-gradient-data", logo: tableauLogo },
-  { name: "Excel", category: "tool", color: "bg-gradient-ai", logo: excelLogo },
-  { name: "AWS", category: "cloud", color: "bg-gradient-hero", logo: awsLogo },
-  { name: "Azure", category: "cloud", color: "bg-gradient-data", logo: azureLogo },
-  { name: "MySQL", category: "database", color: "bg-gradient-ai", logo: mysqlLogo },
-  { name: "Git", category: "tool", color: "bg-gradient-hero", logo: gitLogo },
-  { name: "Scikit-learn", category: "ml", color: "bg-gradient-data", logo: sklearnLogo },
-  { name: "TensorFlow", category: "ml", color: "bg-gradient-ai", logo: tensorflowLogo },
-  { name: "Pandas", category: "ml", color: "bg-gradient-hero", logo: pandasLogo },
-  { name: "PyTorch", category: "ml", color: "bg-gradient-data", logo: pytorchLogo }
+  { name: "Python", category: "language", color: "bg-gradient-hero", logo: "/tech-logos/python.svg" },
+  { name: "SQL", category: "database", color: "bg-gradient-data", logo: "/tech-logos/mysql.svg" },
+  { name: "R", category: "language", color: "bg-gradient-ai", logo: "/tech-logos/r.svg" },
+  { name: "Power BI", category: "visualization", color: "bg-gradient-hero", logo: "/tech-logos/powerbi.svg" },
+  { name: "Tableau", category: "visualization", color: "bg-gradient-data", logo: "/tech-logos/tableau.svg" },
+  { name: "Excel", category: "tool", color: "bg-gradient-ai", logo: "/tech-logos/excel.svg" },
+  { name: "AWS", category: "cloud", color: "bg-gradient-hero", logo: "/tech-logos/aws.svg" },
+  { name: "Azure", category: "cloud", color: "bg-gradient-data", logo: "/tech-logos/azure.svg" },
+  { name: "MySQL", category: "database", color: "bg-gradient-ai", logo: "/tech-logos/mysql.svg" },
+  { name: "Git", category: "tool", color: "bg-gradient-hero", logo: "/tech-logos/git.svg" },
+  { name: "Scikit-learn", category: "ml", color: "bg-gradient-data", logo: "/tech-logos/sklearn.svg" },
+  { name: "TensorFlow", category: "ml", color: "bg-gradient-ai", logo: "/tech-logos/tensorflow.svg" },
+  { name: "Pandas", category: "ml", color: "bg-gradient-hero", logo: "/tech-logos/pandas.svg" },
+  { name: "PyTorch", category: "ml", color: "bg-gradient-data", logo: "/tech-logos/pytorch.svg" },
 ];
 
 const TechStackBanner = () => {
@@ -86,19 +104,19 @@ const TechStackBanner = () => {
                     text-white font-semibold text-center
                     hover:shadow-glow cursor-pointer
                     flex flex-col items-center space-y-2
-                    group-hover:rotate-3
+                    group-hover:rotate-3s
                   `}>
                     {tech.logo && (
                       <div className="text-center">
-                        {tech.logo.endsWith('.svg') ? (
+                        {/* {tech.logo.endsWith('.svg') ? ( */}
                           <img 
                             src={tech.logo} 
                             alt={`${tech.name} logo`} 
                             className="w-6 h-6 object-contain filter brightness-0 invert mx-auto"
                           />
-                        ) : (
+                        {/* ) : (
                           <span className="text-xl">{tech.logo}</span>
-                        )}
+                        )} */}
                       </div>
                     )}
                     <div className="text-xs">{tech.name}</div>

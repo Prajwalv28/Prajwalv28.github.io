@@ -87,7 +87,7 @@ const Navigation = () => {
               variant="outline" 
               size="sm"
               className="glass hover-glow"
-              onClick={() => window.open('public/Prajwal_Venkatesh_Resume_.pdf', '_blank')}
+              onClick={() => window.open('/Prajwal_Venkatesh_Resume_.pdf', '_blank')}
             >
               <Download className="mr-2 h-4 w-4" />
               Resume
@@ -147,7 +147,7 @@ const Navigation = () => {
                 variant="outline" 
                 size="sm" 
                 className="glass"
-                onClick={() => window.open('public/Prajwal_Venkatesh_Resume_.pdf', '_blank')}
+                onClick={() => window.open('/Prajwal_Venkatesh_Resume_.pdf', '_blank')}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Resume

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,6 +31,16 @@ const AIChat = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+
+
+  useEffect(() => {
+    const handleOpenChat = () => {
+      setIsOpen(true);
+    };
+
+    window.addEventListener('openAIChat', handleOpenChat);
+    return () => window.removeEventListener('openAIChat', handleOpenChat);
+  }, []);
 
   const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
@@ -319,7 +329,7 @@ const AIChat = () => {
         break;
       case 'voice':
         // Voice assistant will be connected when Supabase is integrated
-        alert('Voice assistant feature coming soon with Supabase integration!');
+        alert('Voice assistant feature coming soon!');
         break;
     }
   };
