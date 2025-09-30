@@ -290,7 +290,7 @@ const AIChat = () => {
     // Handle direct actions
     if (lowerSuggestion.includes('download now')) {
       const link = document.createElement('a');
-      link.href = 'public/Prajwal_Venkatesh_Resume_.pdf';
+      link.href = '/Prajwal_Venkatesh_Resume_.pdf';
       link.download = 'Prajwal_Venkatesh_Resume.pdf';
       document.body.appendChild(link);
       link.click();
@@ -321,7 +321,7 @@ const AIChat = () => {
         break;
       case 'resume':
         const link = document.createElement('a');
-        link.href = 'public/Prajwal_Venkatesh_Resume_.pdf';
+        link.href = '/Prajwal_Venkatesh_Resume_.pdf';
         link.download = 'Prajwal_Venkatesh_Resume.pdf';
         document.body.appendChild(link);
         link.click();

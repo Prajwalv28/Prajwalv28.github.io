@@ -14,7 +14,7 @@ const About = () => {
             The Story Behind <span className="text-gradient-hero">The Data</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Every algorithm tells a story. Here's mine—from curiosity to impact.
+            Every algorithm tells a story. Here's mine from curiosity to impact.
           </p>
         </div>
 
@@ -63,7 +63,7 @@ const About = () => {
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
                 To me, meaningful data science begins with people, not numbers. 
-                I design every solution with empathy—because real impact comes from understanding who’s behind the data and how their lives will change.
+                I design every solution with empathy because real impact comes from understanding who’s behind the data and how their lives will change.
                 </p>
               </CardContent>
             </Card>

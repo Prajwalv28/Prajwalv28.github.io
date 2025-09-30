@@ -84,7 +84,7 @@ const projects: Project[] = [
   {
     id: "railflow-reservation-system",
     title: "RailFlow Railway Reservation Analytics System",
-    description: "End-to-end desktop application for simulating and analyzing train ticketing using a Python Tkinter GUI and SQLite database. Developed comprehensive features for booking, passenger and train management, and real-time ticket status analytics—including age segmentation and train-wise reporting—via custom SQL queries and a user-friendly dashboard.",
+    description: "End-to-end desktop application for simulating and analyzing train ticketing using a Python Tkinter GUI and SQLite database. Developed comprehensive features for booking, passenger and train management, and real-time ticket status analytics including age segmentation and train-wise reporting via custom SQL queries and a user-friendly dashboard.",
     impact: "Streamlined the process of managing railway reservations, improved ticket tracking accuracy, and enabled in-depth analysis of booking, passenger demographics, and operational efficiency.",
     tech: ["Python", "Tkinter", "SQLite", "SQL"],
     category: "analytics",
