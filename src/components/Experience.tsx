@@ -14,8 +14,8 @@ const Experience = () => {
         "Accelerated research cycles by 15% analyzing 30+ machine learning papers",
         "Created standardized evaluation frameworks for $200K research initiative",
         "Built Python-based experiment pipelines with automated evaluation",
-        "Supported 5-member cross-functional team on ML algorithm testing",
-        "Reduced validation error from 20 to 5 per project"
+        "Supported 6-member cross-functional team on ML algorithm testing",
+        "Reduced validation error from 11 to 3 per project"
       ],
       metrics: { efficiency: "+15%", budget: "$200K", papers: "30+" },
       current: true
@@ -27,7 +27,7 @@ const Experience = () => {
       period: "Aug 2024 – Jun 2025",
       type: "Academic",
       achievements: [
-        "Delivered 20% operational efficiency gains analyzing 800+ student records",
+        "Delivered 20% operational efficiency gains analyzing thousands of student records",
         "Generated insights informing $50K budget reallocation towards tutoring",
         "Boosted student engagement 25% building real-time KPI dashboards in Tableau",
         "Improved assessment outcomes 40% delivering 12+ workshops to 80+ participants"
@@ -45,7 +45,7 @@ const Experience = () => {
         "Achieved $1.6M+ annual cost savings with anomaly detection models",
         "Processed 3M+ transactions, reducing false positives by 18%",
         "Improved AUC-ROC from 0.81 to 0.89 through model optimization",
-        "Saved 15 analyst hours weekly automating business processes",
+        "Saved 520 analyst hours annualy automating business processes",
         "Reduced fraud response time 10% deploying Power BI risk dashboards"
       ],
       metrics: { savings: "$1.6M+", transactions: "3M+", efficiency: "+18%" },
