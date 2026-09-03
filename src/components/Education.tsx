@@ -1,114 +1,62 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { GraduationCap, MapPin, Calendar } from "lucide-react";
 
+const education = [
+  {
+    degree: "Master of Science in Data Science",
+    school: "The University of Texas at Arlington",
+    location: "Arlington, TX",
+    period: "Aug 2023 to May 2025",
+    gpa: "4.0/4.0",
+    coursework: ["Big Data & Cloud Computing", "Probability & Statistics", "AI & Neural Networks", "Project Management"],
+  },
+  {
+    degree: "Bachelor of Engineering, Electronics & Communication",
+    school: "M.S. Ramaiah Institute of Technology",
+    location: "Bengaluru, India",
+    period: "Aug 2018 to Jun 2022",
+    gpa: null,
+    coursework: ["Digital Signal Processing", "Data Structures & Algorithms", "Engineering Mathematics", "Machine Learning"],
+  },
+];
+
 const Education = () => {
-  const education = [
-    {
-      degree: "Master of Science in Data Science",
-      school: "The University of Texas at Arlington",
-      location: "Arlington, TX",
-      period: "Aug 2023 – May 2025",
-      gpa: "4.0/4.0",
-      coursework: [
-        "Big Data & Cloud Computing (Azure)",
-        "Probability and Statistics", 
-        "AI & Neural Networks",
-        "Project Management"
-      ],
-      current: true
-    },
-    {
-      degree: "Bachelor of Engineering in Electronics and Communication",
-      school: "M S Ramaiah Institute of Technology",
-      location: "Bengaluru, India",
-      period: "Aug 2018 – Jun 2022",
-      coursework: [
-        "Digital Signal Processing",
-        "Data Structures & Algorithms",
-        "Engineering Mathematics",
-        "Machine Learning"
-      ],
-      current: false
-    }
-  ];
-
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-muted/20">
+    <section className="py-24 md:py-32 border-t border-border/60">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <Badge variant="outline" className="glass glow-primary mb-4">
-            🎓 Academic Excellence
-          </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Educational <span className="text-gradient-data">Foundation</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Rigorous academic preparation combining theoretical depth with practical application
-          </p>
-        </div>
+        <div className="eyebrow mb-5">Education</div>
+        <h2 className="font-display display-italic text-3xl md:text-4xl mb-14">
+          Where the foundations came from
+        </h2>
 
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-3xl space-y-10">
           {education.map((edu, index) => (
-            <Card 
-              key={edu.school} 
-              className={`glass hover-lift ${edu.current ? 'glow-primary' : 'hover-glow'} animate-slide-up`}
-              style={{ animationDelay: `${index * 300}ms` }}
-            >
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="space-y-2">
-                    <CardTitle className="text-xl lg:text-2xl text-gradient-hero">
-                      {edu.degree}
-                    </CardTitle>
-                    <div className="flex items-center space-x-4 text-muted-foreground">
-                      <div className="flex items-center space-x-2">
-                        <GraduationCap className="h-4 w-4" />
-                        <span className="font-semibold">{edu.school}</span>
-                      </div>
+            <div key={edu.school} className="flex gap-6">
+              <span className="index-num pt-1">{String(index).padStart(2, "0")}</span>
+              <div className="flex-1 border-b border-border/60 pb-10">
+                <div className="flex items-start justify-between gap-4 flex-wrap">
+                  <div>
+                    <h3 className="text-xl font-semibold">{edu.degree}</h3>
+                    <div className="flex items-center gap-2 text-muted-foreground mt-2">
+                      <GraduationCap className="h-4 w-4" />
+                      <span>{edu.school}</span>
                     </div>
-                    <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                      <div className="flex items-center space-x-1">
-                        <MapPin className="h-3 w-3" />
-                        <span>{edu.location}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>{edu.period}</span>
-                      </div>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1.5">
+                      <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />{edu.location}</span>
+                      <span className="flex items-center gap-1"><Calendar className="h-3 w-3" />{edu.period}</span>
                     </div>
                   </div>
-                  <div className="text-right">
-                    {/* {edu.current && (
-                      <Badge className="bg-gradient-ai mb-2">
-                        Current
-                      </Badge>
-                    )} */}
-                    {edu.gpa && (
-                      <div className="text-2xl font-bold text-gradient-ai">
-                        {edu.gpa}
-                      </div>
-                    )}
-                  </div>
+                  {edu.gpa && <div className="hud-value text-2xl">{edu.gpa}</div>}
                 </div>
-              </CardHeader>
-              <CardContent>
-                <div>
-                  <h4 className="font-semibold mb-3 text-foreground">Key Coursework:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {edu.coursework.map((course) => (
-                      <Badge 
-                        key={course} 
-                        variant="secondary" 
-                        className="glass"
-                      >
-                        {course}
-                      </Badge>
-                    ))}
-                  </div>
+
+                <div className="flex flex-wrap gap-2 mt-5">
+                  {edu.coursework.map((course) => (
+                    <span key={course} className="text-xs font-mono px-3 py-1 rounded-full border border-border/60 text-muted-foreground">
+                      {course}
+                    </span>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </div>

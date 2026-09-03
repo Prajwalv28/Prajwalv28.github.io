@@ -6,110 +6,134 @@
 
 @layer base {
   :root {
-    /* Core Brand Colors - Dark Tech Theme */
-    --background: 220 26% 8%;
-    --foreground: 210 40% 98%;
-    
-    /* Card & Surface Colors */
-    --card: 220 26% 10%;
-    --card-foreground: 210 40% 98%;
-    
-    /* Interactive Elements */
-    --popover: 220 26% 12%;
-    --popover-foreground: 210 40% 98%;
-    
-    /* Primary - Electric Blue */
-    --primary: 213 100% 60%;
-    --primary-foreground: 220 26% 8%;
-    --primary-glow: 213 100% 70%;
-    
-    /* Secondary - Deep Tech */
-    --secondary: 220 26% 14%;
-    --secondary-foreground: 210 40% 98%;
-    
-    /* Accent - Neon Green */
-    --accent: 142 76% 56%;
-    --accent-foreground: 220 26% 8%;
-    --accent-glow: 142 76% 66%;
-    
-    /* Muted Elements */
-    --muted: 220 26% 16%;
-    --muted-foreground: 215 20% 65%;
-    
-    /* Status Colors */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    
-    /* Borders & Inputs */
-    --border: 220 26% 18%;
-    --input: 220 26% 16%;
-    --ring: 213 100% 60%;
-    
-    /* AI Theme Colors */
-    --ai-primary: 280 100% 70%;
-    --ai-secondary: 320 100% 65%;
-    --data-viz: 180 100% 50%;
-    
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    --gradient-ai: linear-gradient(135deg, hsl(var(--ai-primary)), hsl(var(--ai-secondary)));
-    --gradient-data: linear-gradient(135deg, hsl(var(--data-viz)), hsl(var(--primary)));
+    /* ---- Prajwal Venkatesh — Design System ----
+       Blend brief: editorial restraint (Nothin') + dark technical
+       precision (Lax Space). Near-black graphite ground, warm paper
+       ink, one committed signal color pulled from market-data
+       terminals — not decoration, a working color used the way a
+       terminal actually uses it. */
+
+    --background: 30 4% 5%;           /* graphite ink, warm not blue-black */
+    --foreground: 40 20% 92%;         /* warm paper */
+
+    --card: 30 5% 8%;
+    --card-foreground: 40 20% 92%;
+
+    --popover: 30 6% 7%;
+    --popover-foreground: 40 20% 92%;
+
+    /* Primary — Signal (terminal spearmint, not the acid-green cliché) */
+    --primary: 168 100% 45%;
+    --primary-foreground: 30 4% 5%;
+    --primary-glow: 168 100% 58%;
+
+    --secondary: 30 5% 12%;
+    --secondary-foreground: 40 20% 92%;
+
+    /* Accent mirrors primary — one committed color, not a second hue */
+    --accent: 168 100% 45%;
+    --accent-foreground: 30 4% 5%;
+    --accent-glow: 168 100% 58%;
+
+    --muted: 30 5% 13%;
+    --muted-foreground: 35 8% 58%;
+
+    /* Status — literal financial semantics, not brand decoration */
+    --destructive: 356 85% 58%;
+    --destructive-foreground: 40 20% 92%;
+    --gain: 168 100% 45%;
+    --loss: 356 85% 58%;
+
+    --border: 30 6% 17%;
+    --input: 30 6% 15%;
+    --ring: 168 100% 45%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(30 4% 5%));
     --gradient-glass: linear-gradient(135deg, hsl(var(--card) / 0.7), hsl(var(--muted) / 0.5));
-    
-    /* Shadows & Effects */
-    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.3);
-    --shadow-accent-glow: 0 0 40px hsl(var(--accent) / 0.3);
-    --shadow-ai-glow: 0 0 40px hsl(var(--ai-primary) / 0.3);
-    --shadow-elevation: 0 10px 30px -10px hsl(220 26% 4% / 0.5);
-    
-    /* Animation Timings */
+
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.25);
+    --shadow-accent-glow: 0 0 40px hsl(var(--accent) / 0.25);
+    --shadow-elevation: 0 10px 30px -10px hsl(30 4% 2% / 0.6);
+
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    
-    --radius: 0.75rem;
-    
-    --sidebar-background: 220 26% 10%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 213 100% 60%;
-    --sidebar-primary-foreground: 220 26% 8%;
-    --sidebar-accent: 220 26% 14%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 220 26% 18%;
-    --sidebar-ring: 213 100% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 30 5% 8%;
+    --sidebar-foreground: 40 20% 92%;
+    --sidebar-primary: 168 100% 45%;
+    --sidebar-primary-foreground: 30 4% 5%;
+    --sidebar-accent: 30 5% 12%;
+    --sidebar-accent-foreground: 40 20% 92%;
+    --sidebar-border: 30 6% 17%;
+    --sidebar-ring: 168 100% 45%;
   }
 
+  /* ---- LIGHT = GOLDEN HOUR ----
+     Not "dark mode inverted". Warm bone paper, deep forest ink, and a
+     burnt-amber signal — the palette of low sun through haze. The page
+     itself carries atmosphere (see .atmosphere below) so light mode is
+     never a flat white field. */
   .light {
-    /* Light mode theme */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 213 100% 50%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 142 76% 46%;
-    --accent-foreground: 222.2 84% 4.9%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 213 100% 50%;
+    --background: 40 38% 94%;         /* warm bone, never pure white */
+    --foreground: 170 30% 12%;        /* deep forest ink */
+
+    --card: 40 44% 97%;
+    --card-foreground: 170 30% 12%;
+
+    --popover: 40 44% 97%;
+    --popover-foreground: 170 30% 12%;
+
+    /* Signal shifts from spearmint to burnt amber — sunlight, not neon */
+    --primary: 28 88% 42%;
+    --primary-foreground: 40 44% 97%;
+    --primary-glow: 33 95% 55%;
+
+    --secondary: 38 30% 88%;
+    --secondary-foreground: 170 30% 12%;
+
+    --muted: 38 26% 87%;
+    --muted-foreground: 170 12% 38%;
+
+    --accent: 28 88% 42%;
+    --accent-foreground: 40 44% 97%;
+    --accent-glow: 33 95% 55%;
+
+    --destructive: 356 70% 46%;
+    --destructive-foreground: 40 44% 97%;
+    --gain: 162 62% 30%;
+    --loss: 356 70% 46%;
+
+    --border: 38 22% 80%;
+    --input: 38 22% 82%;
+    --ring: 28 88% 42%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(33 95% 55%), hsl(28 88% 42%));
+    --gradient-glass: linear-gradient(135deg, hsl(40 50% 99% / 0.72), hsl(38 40% 94% / 0.5));
+
+    --shadow-glow: 0 0 44px hsl(var(--primary) / 0.22);
+    --shadow-accent-glow: 0 0 44px hsl(var(--accent) / 0.22);
+    --shadow-elevation: 0 14px 36px -12px hsl(30 40% 30% / 0.28);
+
+    --sidebar-background: 40 44% 97%;
+    --sidebar-foreground: 170 30% 12%;
+    --sidebar-primary: 28 88% 42%;
+    --sidebar-primary-foreground: 40 44% 97%;
+    --sidebar-accent: 38 30% 88%;
+    --sidebar-accent-foreground: 170 30% 12%;
+    --sidebar-border: 38 22% 80%;
+    --sidebar-ring: 28 88% 42%;
   }
 
   .dark {
-    /* Dark mode optimizations */
-    --background: 220 26% 6%;
-    --card: 220 26% 8%;
-    --popover: 220 26% 10%;
-    --secondary: 220 26% 12%;
-    --muted: 220 26% 14%;
-    --border: 220 26% 16%;
-    --input: 220 26% 14%;
+    --background: 30 4% 5%;
+    --card: 30 5% 8%;
+    --popover: 30 6% 7%;
+    --secondary: 30 5% 12%;
+    --muted: 30 5% 13%;
+    --border: 30 6% 17%;
+    --input: 30 6% 15%;
   }
 }
 
@@ -123,10 +147,14 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
@@ -143,6 +171,30 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-primary-glow;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Custom cursor replaces the native one on precise pointers only.
+     Coarse/touch and reduced-motion users keep the system cursor. */
+  @media (hover: hover) and (pointer: fine) {
+    html:not([data-reduced]) body,
+    html:not([data-reduced]) a,
+    html:not([data-reduced]) button {
+      cursor: none;
+    }
+  }
+
+  /* Lenis needs these to drive scrolling itself */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
 }
 
 @layer components {
@@ -152,148 +204,266 @@
     backdrop-filter: blur(20px);
     border: 1px solid hsl(var(--border) / 0.5);
   }
-  
-  /* Glow Effects */
-  .glow-primary {
-    box-shadow: var(--shadow-glow);
-  }
-  
-  .glow-accent {
-    box-shadow: var(--shadow-accent-glow);
-  }
-  
-  .glow-ai {
-    box-shadow: var(--shadow-ai-glow);
-  }
-  
-  /* Text Gradients */
+
+  .glow-primary { box-shadow: var(--shadow-glow); }
+  .glow-accent { box-shadow: var(--shadow-accent-glow); }
+
   .text-gradient-hero {
     background: var(--gradient-hero);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  
-  .text-gradient-ai {
-    background: var(--gradient-ai);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+  /* ---- Editorial type ---- */
+  .display-italic {
+    font-family: theme('fontFamily.display');
+    font-style: italic;
+    font-weight: 400;
   }
-  
-  .text-gradient-data {
-    background: var(--gradient-data);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+  /* ---- HUD / terminal readout, used for real data only ---- */
+  .hud-label {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
   }
-  
+
+  .hud-value {
+    font-family: theme('fontFamily.mono');
+    font-variant-numeric: tabular-nums;
+    color: hsl(var(--primary));
+  }
+
+  /* ---- Numbered index, Nothin'/Lax Space convention ---- */
+  .index-num {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.75rem;
+    color: hsl(var(--muted-foreground));
+    letter-spacing: 0.05em;
+  }
+
+  .eyebrow {
+    font-family: theme('fontFamily.mono');
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: hsl(var(--primary));
+  }
+
+  /* ---- Ticker tape ---- */
+  .ticker-row {
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll 34s linear infinite;
+  }
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
   /* Hover Animations */
   .hover-lift {
     transition: var(--transition-smooth);
   }
-  
   .hover-lift:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-elevation);
   }
-  
   .hover-glow {
     transition: var(--transition-smooth);
   }
-  
   .hover-glow:hover {
     box-shadow: var(--shadow-glow);
   }
-  
-  /* Floating Animation */
+
   .floating {
     animation: floating 6s ease-in-out infinite;
   }
-  
   @keyframes floating {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
   }
-  
-  /* Pulse Glow */
+
   .pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite alternate;
   }
-  
   @keyframes pulse-glow {
     from { box-shadow: var(--shadow-glow); }
     to { box-shadow: 0 0 60px hsl(var(--primary) / 0.5); }
   }
-  
-  /* Typing Animation */
-  .typewriter {
-    overflow: hidden;
-    border-right: 2px solid hsl(var(--primary));
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-  }
-  
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-  
-  @keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: hsl(var(--primary)); }
-  }
-  
-  /* Data Visualization Animations */
+
   .chart-animate {
     animation: chart-grow 1.5s ease-out;
   }
-  
   @keyframes chart-grow {
     from { transform: scaleY(0); opacity: 0; }
     to { transform: scaleY(1); opacity: 1; }
   }
 
-  /* Orbiting Skills Animation */
-  .orbit-container {
-    position: relative;
-    width: 400px;
-    height: 400px;
-  }
-
-  .orbit-skill {
-    position: absolute;
-    animation: orbit 8s linear infinite;
-  }
-
-  .orbit-skill:nth-child(1) { animation-delay: 0s; }
-  .orbit-skill:nth-child(2) { animation-delay: -2s; }
-  .orbit-skill:nth-child(3) { animation-delay: -4s; }
-  .orbit-skill:nth-child(4) { animation-delay: -6s; }
-
-  @keyframes orbit {
-    from {
-      transform: rotate(0deg) translateX(180px) rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg) translateX(180px) rotate(-360deg);
-    }
-  }
-
-  /* Timeline Animation */
-  .timeline-item {
+  /* Reveal-on-scroll (paired with a small IntersectionObserver hook) */
+  .reveal {
     opacity: 0;
-    transform: translateX(-50px);
-    animation: slideInTimeline 0.6s ease-out forwards;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .timeline-item:nth-child(odd) {
-    transform: translateX(50px);
+  /* ---- Volumetric atmosphere ----
+     The thing that makes light mode read as "golden hour" rather than
+     "white page": angled light shafts + warm haze bloom, fixed behind
+     all content. Dark mode gets the same geometry in cool moonlight. */
+  .atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .atmosphere::before {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    background:
+      radial-gradient(60% 45% at 72% 8%, hsl(var(--primary-glow) / 0.30), transparent 70%),
+      radial-gradient(50% 40% at 18% 82%, hsl(var(--primary) / 0.16), transparent 72%);
+    filter: blur(30px);
+    animation: haze-drift 26s ease-in-out infinite alternate;
+  }
+  .light .atmosphere::before {
+    background:
+      radial-gradient(65% 50% at 74% 4%, hsl(38 100% 68% / 0.55), transparent 70%),
+      radial-gradient(55% 45% at 14% 88%, hsl(28 90% 60% / 0.22), transparent 74%);
+  }
+  @keyframes haze-drift {
+    from { transform: translate3d(0,0,0) scale(1); }
+    to   { transform: translate3d(-3%, 2%, 0) scale(1.08); }
   }
 
-  @keyframes slideInTimeline {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  /* Angled god-rays */
+  .atmosphere::after {
+    content: '';
+    position: absolute;
+    inset: -30%;
+    background: repeating-linear-gradient(
+      108deg,
+      transparent 0px,
+      transparent 58px,
+      hsl(var(--primary-glow) / 0.05) 58px,
+      hsl(var(--primary-glow) / 0.05) 96px
+    );
+    mask-image: radial-gradient(58% 48% at 74% 6%, #000 0%, transparent 76%);
+    -webkit-mask-image: radial-gradient(58% 48% at 74% 6%, #000 0%, transparent 76%);
+    animation: rays-sway 20s ease-in-out infinite alternate;
+  }
+  .light .atmosphere::after {
+    background: repeating-linear-gradient(
+      108deg,
+      transparent 0px,
+      transparent 52px,
+      hsl(42 100% 74% / 0.30) 52px,
+      hsl(42 100% 74% / 0.30) 92px
+    );
+  }
+  @keyframes rays-sway {
+    from { transform: translateX(-2%) rotate(-1.2deg); }
+    to   { transform: translateX(2%) rotate(1.2deg); }
+  }
+
+  /* Cinematic theme crossfade — a warm wipe rather than an instant flip */
+  .theme-wipe {
+    position: fixed;
+    inset: 0;
+    z-index: 190;
+    pointer-events: none;
+  }
+
+  /* Scroll-velocity skew target */
+  .skew-target {
+    will-change: transform;
+  }
+
+  /* Frosted glass tuned per theme */
+  .glass-warm {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(18px) saturate(1.15);
+    -webkit-backdrop-filter: blur(18px) saturate(1.15);
+    border: 1px solid hsl(var(--border) / 0.7);
+  }
+}
+/* ------------------------------------------------------------------ */
+/* Print: collapse the cinematic site into a clean one page brief.     */
+/* Triggered from the command palette, or just Cmd+P.                  */
+/* ------------------------------------------------------------------ */
+@media print {
+  @page { margin: 14mm; }
+
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+    --muted-foreground: 0 0% 32%;
+    --primary: 0 0% 8%;
+    --border: 0 0% 82%;
+    --card: 0 0% 100%;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  /* strip everything that only exists for screen */
+  nav,
+  canvas,
+  .atmosphere,
+  .theme-wipe,
+  .ticker-row,
+  #lab,
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  section {
+    padding: 0 0 10mm 0 !important;
+    border: none !important;
+    break-inside: avoid;
+  }
+
+  h1 { font-size: 22pt !important; }
+  h2 { font-size: 14pt !important; margin-bottom: 4mm !important; }
+  h3 { font-size: 11pt !important; }
+
+  .hud-value { color: #111 !important; }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #555;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

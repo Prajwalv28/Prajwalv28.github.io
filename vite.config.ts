@@ -16,4 +16,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 900,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Heavy WebGL stack, loaded lazily by the hero
+          three: ["three", "@react-three/fiber", "@react-three/drei", "@react-three/postprocessing"],
+          motion: ["framer-motion"],
+          vendor: ["react", "react-dom", "react-router-dom"],
+        },
+      },
+    },
+  },
 }));

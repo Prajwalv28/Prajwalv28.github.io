@@ -74,213 +74,95 @@ const AIChat = () => {
 
   const generateAIResponse = (input: string) => {
     const lowerInput = input.toLowerCase();
-    
-    // Handle experience questions - focus on data analysis and business impact
-    if (lowerInput.includes('experience') || lowerInput.includes('work experience') || lowerInput.includes('tell me about prajwal\'s experience')) {
-      return {
-        content: "Prajwal is a strategic Data Analyst with proven business impact - he delivered $1.6M in cost savings through fraud detection analytics, boosted operational efficiency by 20% analyzing 800+ student records, and reduced manual processes saving 15 analyst hours weekly. He specializes in SQL, Python, Power BI/Tableau for executive reporting and data-driven decision making.",
-        suggestions: ["What business problems has he solved?", "Tell me about his analytical tools", "Show me his dashboard work", "What cost savings has he achieved?"]
-      };
-    }
-    
-    // Handle ML experience questions separately for those interested in ML aspects
-    if (lowerInput.includes('ml experience') || lowerInput.includes('machine learning experience') || lowerInput.includes('tell me about prajwal\'s ml')) {
-      return {
-        content: "Prajwal applies ML for business solutions: fraud detection models (improved AUC-ROC from 0.81 to 0.89 preventing $1.6M losses), credit risk scoring (F1=0.80), and automated classification systems. He focuses on practical ML applications that drive measurable business outcomes rather than theoretical research.",
-        suggestions: ["How does he apply ML to business problems?", "Tell me about the fraud detection ROI", "What about his analytical approach?", "Show me his recent projects"]
-      };
-    }
-    
-    // Handle biggest project impact questions
-    if (lowerInput.includes('biggest project') || lowerInput.includes('project impact') || lowerInput.includes('most impactful')) {
-      return {
-        content: "His most impactful project is the fraud detection system at Valley Infosystems that prevented $1.6M+ in annual fraud losses. Working on 3M+ transactions, he improved the AUC-ROC from 0.81 to 0.89, reduced false positives by 18%, and cut fraud response time by 10% using anomaly detection models.",
-        suggestions: ["How does the fraud detection work?", "What technologies did he use?", "Tell me about his other projects", "What about his current research?"]
-      };
-    }
-    
-    // Handle scheduling questions
-    if (lowerInput.includes('schedule an interview') || lowerInput.includes('book') || lowerInput.includes('meeting') || lowerInput.includes('interview')) {
-      return {
-        content: "Perfect! I can help you schedule an interview with Prajwal. He's available for technical interviews, behavioral interviews, or informal chats. Would you prefer a 30-minute screening call to discuss his background and fit, or a 60-minute technical deep dive with his fraud detection and research projects?",
-        suggestions: ["Book 30-min screening", "Book 60-min technical interview", "Get his calendar link", "What to expect in interview?"]
-      };
-    }
-    
-    // Handle resume download questions
-    if (lowerInput.includes('download his resume') || lowerInput.includes('resume') || lowerInput.includes('cv')) {
-      return {
-        content: "I can provide Prajwal's latest resume! It's ATS-optimized and includes his verified achievements: $1.6M fraud prevention, 30% reduction in manual reviews, and research acceleration by 15%. The resume highlights his technical skills in SQL, Python, Power BI/Tableau, and ML frameworks.",
-        suggestions: ["Download PDF resume", "Get LinkedIn profile", "Show skill breakdown", "Tell me about his education"]
-      };
-    }
-    
-    // Handle specific follow-up questions
-    if (lowerInput.includes('ml frameworks') || lowerInput.includes('what ml frameworks')) {
-      return {
-        content: "Prajwal uses multiple ML frameworks based on his resume: Python with NumPy, Pandas, Scikit-learn for research pipelines, and has experience with classification and regression models. He's also worked with Power BI (DAX) and Tableau for visualization, plus SQL and Snowflake for data processing.",
-        suggestions: ["What about his Python experience?", "Tell me about his data visualization skills", "What databases does he use?", "Any cloud certifications?"]
-      };
-    }
-    
-    if (lowerInput.includes('model performance') || lowerInput.includes('performance metrics')) {
-      return {
-        content: "Here are Prajwal's verified model performance metrics: Fraud Detection (improved AUC-ROC from 0.81 to 0.89, reduced false positives by 18%), Fina Credit Risk System (F1-score = 0.80), and Botanical Image Classification (80.9% accuracy improvement from 58%). His work prevented $1.6M in annual fraud losses.",
-        suggestions: ["How did he improve the AUC-ROC?", "Tell me about the Fina project", "What validation methods did he use?", "Any other achievements?"]
-      };
-    }
-    
-    if (lowerInput.includes('ai projects') || lowerInput.includes('artificial intelligence') || lowerInput.includes('recent projects')) {
-      return {
-        content: "Prajwal's recent AI projects include: 1) Fina: AI-powered Credit Risk System with RAG, XGBoost, and Streamlit (F1=0.80, 30% reduction in manual reviews), 2) VibeSync: Mood-driven Music Recommender using NLP and Spotify API (28% user engagement increase), and 3) Botanical Image Classification using CNN (80.9% accuracy).",
-        suggestions: ["Tell me about the Fina system", "How does VibeSync work?", "What about his fraud detection work?", "Any research projects?"]
-      };
-    }
-    
-    if (lowerInput.includes('biggest ml achievement') || lowerInput.includes('ml achievement')) {
-      return {
-        content: "Prajwal's biggest ML achievement is building the fraud detection system at Valley Infosystems that saved $1.6M+ annually. He improved the AUC-ROC from 0.81 to 0.89, reduced false positives by 18%, and deployed Power BI dashboards with SHAP explainability that helped analysts triage 13% faster.",
-        suggestions: ["How does the fraud system work?", "What's SHAP explainability?", "Tell me about his current research", "What other projects has he worked on?"]
-      };
-    }
-    
-    if (lowerInput.includes('how does the fraud detection work') || lowerInput.includes('fraud detection work') || lowerInput.includes('fraud detection achievement') || lowerInput.includes('fraud prevention details')) {
-      return {
-        content: "The fraud detection system uses anomaly detection models deployed on 3M+ transactions. Prajwal collaborated with risk management teams to improve AUC-ROC from 0.81 to 0.89, established data governance frameworks, and created Power BI dashboards with SHAP explainability for prioritized alert queues.",
-        suggestions: ["What is SHAP explainability?", "How did he improve the AUC-ROC?", "Tell me about the data governance", "What technologies were used?"]
-      };
-    }
-    
-    if (lowerInput.includes('technologies did he use') || lowerInput.includes('what technologies')) {
-      return {
-        content: "Based on his experience, Prajwal uses: Python (NumPy, Pandas, Scikit-learn), SQL and Snowflake for data mining, Power BI with DAX and Tableau for visualization, ETL pipelines for automation, and cloud platforms (AWS Cloud Practitioner certified, Oracle Cloud expected Oct 2025).",
-        suggestions: ["What about his research tools?", "Tell me about his certifications", "Any specific databases?", "What visualization tools?"]
-      };
-    }
-    
-    // Handle quick actions
-    if (lowerInput.includes('book 30-min') || lowerInput.includes('30-min screening')) {
-      return {
-        content: "Great choice! A 30-minute screening call is perfect for discussing Prajwal's background, including his fraud detection work ($1.6M savings), current research role, and your team's needs. You can explore his experience with SQL, Python, ML frameworks, and data visualization tools.",
-        suggestions: ["Open calendar link", "What should I prepare?", "Can we discuss specific projects?", "What about technical questions?"]
-      };
-    }
-    
-    if (lowerInput.includes('60-min technical') || lowerInput.includes('technical deep dive') || lowerInput.includes('book 60-min')) {
-      return {
-        content: "Excellent! A 60-minute technical interview allows deep discussion of his fraud detection system (AUC-ROC improvement 0.81→0.89), research work with ML pipelines, Fina credit risk system, and VibeSync recommender. Perfect for exploring his Python, SQL, and ML expertise in detail.",
-        suggestions: ["Schedule technical interview", "What projects should we discuss?", "Any coding challenges?", "Can he demo his work?"]
-      };
-    }
-    
-    if (lowerInput.includes('calendar link') || lowerInput.includes('get his calendar')) {
-      return {
-        content: "I'll open Prajwal's calendar for you! He's currently a Research Assistant at UT Arlington and available for interviews. The calendar shows his availability for both screening calls and technical deep dives, with options for different time zones.",
-        suggestions: ["Open calendar now"]
-      };
-    }
-    
-    if (lowerInput.includes('download pdf') || lowerInput.includes('download pdf resume')) {
-      return {
-        content: "Perfect! Prajwal's PDF resume includes his verified achievements: $1.6M fraud prevention, 4.0 GPA in Data Science MS, AWS Cloud Practitioner certification, and detailed project metrics including F1-scores and accuracy improvements. It's formatted for ATS systems.",
-        suggestions: ["Download now", "Get LinkedIn profile link", "Tell me about his education", "What certifications does he have?"]
-      };
-    }
-    
-    // Handle general experience/background questions
+
     if (lowerInput.includes('experience') || lowerInput.includes('background')) {
       return {
-        content: "Prajwal is currently a Research Assistant at UT Arlington (Jul 2025-Present) with previous experience as Data Analyst GTA and Data Scientist at Valley Infosystems. He has a 4.0 GPA MS in Data Science and delivered $1.6M+ in fraud prevention while working with SQL, Python, and ML frameworks.",
-        suggestions: ["Tell me about his current research", "What about his fraud detection work?", "Show me his education details", "What skills does he have?"]
-      };
-    }
-    
-    if (lowerInput.includes('skills') || lowerInput.includes('tech') || lowerInput.includes('stack')) {
-      return {
-        content: "Prajwal's technical skills include: Programming (SQL, Python, R), Data Visualization (Power BI with DAX, Tableau, Excel), ML & Stats (Regression, Classification, A/B Testing), and Cloud (AWS Cloud Practitioner certified, Oracle Cloud expected Oct 2025). He also has project management and cross-functional collaboration experience.",
-        suggestions: ["Tell me about his Python experience", "What databases does he use?", "Any ML certifications?", "What about his research skills?"]
-      };
-    }
-    if (lowerInput.includes('what business problems has he solved') || lowerInput.includes('business problems')) {
-      return {
-        content: "Prajwal has solved critical business problems: 1) Fraud Prevention - saved $1.6M annually by improving detection accuracy (AUC-ROC 0.81→0.89), 2) Operational Efficiency - boosted efficiency 20% analyzing student records, saved 15 analyst hours weekly through automation, 3) Decision Making - created real-time KPI dashboards improving engagement 25%, 4) Risk Management - built credit risk system reducing manual reviews 30%.",
-        suggestions: ["Tell me about the fraud prevention details", "What dashboards has he built?", "Book interview"]
-      };
-    }
-    
-    if (lowerInput.includes('tell me about his analytical tools') || lowerInput.includes('analytical tools') || lowerInput.includes('what tools does he use')) {
-      return {
-        content: "Prajwal's analytical toolkit includes: SQL & Snowflake for data mining (reduced query time 15 min→3 min), Python with NumPy/Pandas/Scikit-learn for analysis, Power BI with DAX for executive reporting, Tableau for real-time KPI dashboards, Excel with Power Query/VLOOKUP/Pivot Tables for business analysis, and ETL pipelines for automation.",
-        suggestions: ["Tell me about his SQL skills", "What about his Python experience?", "How does he use Power BI?", "Schedule interview"]
-      };
-    }
-    
-    if (lowerInput.includes('show me his dashboard work') || lowerInput.includes('dashboard work') || lowerInput.includes('what dashboards has he built')) {
-      return {
-        content: "Prajwal built impactful dashboards: 1) Real-time KPI dashboards in Tableau (boosted student engagement 25%), 2) Power BI risk dashboards with SHAP explainability (helped analysts triage 13% faster), 3) Executive reporting dashboards for operational insights, 4) Prioritized alert queues for fraud detection. All focus on actionable business insights.",
-        suggestions: ["What is SHAP explainability?", "Tell me about his Power BI skills", "How does he create executive reports?", "Book interview"]
+        content: "Prajwal is a Data Scientist, AI/ML at JPMorgan Chase (Jan 2025\u2013Present), working on credit risk modeling, generative AI/RAG platforms, and fraud detection. Before that, he spent three years as a Data Scientist at Mphasis in India (Jun 2020\u2013Jul 2023) on forecasting, ETL modernization, and customer segmentation. He holds an MS in Data Science from UT Arlington (4.0 GPA).",
+        suggestions: ["What's his biggest project impact?", "Tell me about his credit risk work", "What about his RAG platform?", "Schedule an interview"]
       };
     }
 
-    if (lowerInput.includes('what cost savings has he achieved') || lowerInput.includes('cost savings') || lowerInput.includes('savings achieved')) {
+    if (lowerInput.includes('credit risk') || lowerInput.includes('auc')) {
       return {
-        content: "Prajwal delivered significant cost savings: $1.6M+ annual fraud prevention through improved detection models, 15 analyst hours saved weekly through process automation, 20% operational efficiency gains through data analysis, and reduced manual reviews by 30% in credit risk systems. His work consistently translates data insights into measurable business value.",
-        suggestions: ["How did he achieve the $1.6M savings?", "Tell me about the automation he built", "What other business impacts?", "Schedule interview"]
+        content: "At JPMorgan Chase, Prajwal redesigned credit risk feature engineering and retrained XGBoost models against 95M+ lending records, improving default prediction AUC from 0.79 to 0.91 across retail and commercial portfolios.",
+        suggestions: ["Tell me about his RAG platform", "What's the fraud detection work?", "Any other projects?", "Schedule an interview"]
       };
     }
-    
-    if (lowerInput.includes('what should i prepare') || lowerInput.includes('what to prepare')) {
+
+    if (lowerInput.includes('rag') || lowerInput.includes('generative ai') || lowerInput.includes('llm')) {
       return {
-        content: "For the interview, prepare to discuss: 1) Your specific business challenges and how Prajwal's fraud detection ($1.6M savings) or analytics experience could help, 2) Questions about his SQL/Python skills for your data infrastructure, 3) His experience with Power BI/Tableau for your reporting needs, 4) Timeline and team structure for the role.",
-        suggestions: ["Book interview now", "Tell me about his SQL experience", "What dashboards has he built?", "Get his resume"]
+        content: "Prajwal built a RAG platform at JPMorgan indexing SEC filings, earnings reports, and market disclosures via vector search and document embeddings \u2014 cutting analyst research time from 2.5 hours to under 50 minutes. At Mphasis, he also used LangChain, LlamaIndex, and GCP Vertex AI for financial document processing, saving 340+ analyst hours annually.",
+        suggestions: ["Tell me about his credit risk work", "What's his flagship portfolio project?", "What ML frameworks does he use?", "Schedule an interview"]
       };
     }
-    
-    if (lowerInput.includes('tell me about his certifications') || lowerInput.includes('certification details') || lowerInput.includes('any certifications')) {
+
+    if (lowerInput.includes('fraud') || lowerInput.includes('anomaly')) {
       return {
-        content: "Prajwal holds AWS Cloud Practitioner certification (verified) and is expecting Oracle Cloud Infrastructure Foundations Associate certification in October 2025. He also has a perfect 4.0 GPA in his Master of Science in Data Science from UT Arlington, with coursework in Big Data & Cloud Computing (Azure).",
-        suggestions: ["Download his resume", "Tell me about his cloud experience", "What about his education?", "Book interview"]
+        content: "Prajwal recalibrated anomaly detection models at JPMorgan using MLflow drift monitoring, cutting false positive transaction screening alerts from 18% to 11% across enterprise payment channels.",
+        suggestions: ["Tell me about his credit risk work", "What's his biggest project?", "Schedule an interview"]
       };
     }
-    
-    if (lowerInput.includes('any other achievements') || lowerInput.includes('show me more achievements') || lowerInput.includes('other accomplishments')) {
+
+    if (lowerInput.includes('biggest project') || lowerInput.includes('most impactful') || lowerInput.includes('flagship') || lowerInput.includes('portfolio optimization')) {
       return {
-        content: "Additional achievements: Boosted student engagement 25% with real-time KPI dashboards, improved assessment outcomes 40% through 12+ workshops to 80+ participants, accelerated research cycles by 15% analyzing 30+ ML papers, and reduced query time from 15 minutes to 3 minutes using SQL/Snowflake optimization.",
-        suggestions: ["Tell me about his dashboard work", "What workshops did he deliver?", "How does he optimize queries?", "Schedule interview"]
+        content: "His flagship personal project is a Quantitative Multi Asset Portfolio Optimization & Rebalancing Engine \u2014 a PyTorch covariance engine querying 6M+ tick level records in Snowflake, boosting portfolio Sharpe ratio from 1.15 to 1.82, and cutting rebalancing latency from 45 seconds to under 1.8 seconds across 500+ tickers.",
+        suggestions: ["What tech did he use?", "Any other side projects?", "Tell me about his JPMorgan work", "Schedule an interview"]
       };
     }
-    
-    if (lowerInput.includes('how does he use snowflake') || lowerInput.includes('snowflake experience') || lowerInput.includes('tell me about snowflake')) {
+
+    if (lowerInput.includes('schedule') || lowerInput.includes('book') || lowerInput.includes('meeting') || lowerInput.includes('interview')) {
       return {
-        content: "In his current Research Assistant role, Prajwal uses SQL and Snowflake for efficient data mining, achieving a dramatic improvement in query performance - reducing average query time from 15 minutes to 3 minutes. This optimization improved data governance and supported his team's ML algorithm testing workflows.",
-        suggestions: ["What other databases does he use?", "Tell me about his SQL skills", "How does he handle data governance?", "Book technical interview"]
+        content: "I can help you schedule time with Prajwal \u2014 a 30-minute screening call to discuss background and fit, or a deeper technical conversation about his credit risk, RAG, or portfolio optimization work.",
+        suggestions: ["Open calendar link", "Download his resume", "Tell me about his experience"]
       };
     }
-    if (lowerInput.includes('fina') || lowerInput.includes('credit risk')) {
+
+    if (lowerInput.includes('resume') || lowerInput.includes('cv')) {
       return {
-        content: "Fina is Prajwal's AI-powered Credit Risk & Advisory System built with Python, RAG, XGBoost, and Streamlit. For FHL bank, it achieved F1-score of 0.80, flagged the top 2% of risky loans, cut manual reviews by 30%, and reduced evaluation time by 15% with 12% faster decision turnaround.",
-        suggestions: ["How does the RAG system work?", "What's the XGBoost model doing?", "Tell me about SHAP integration", "Any other recent projects?"]
+        content: "I can get you Prajwal's r\u00e9sum\u00e9 \u2014 it covers his JPMorgan Chase and Mphasis roles, the portfolio optimization project, and his full skill set (Python, PyTorch, XGBoost, LangChain, Snowflake, Databricks, and more).",
+        suggestions: ["Download now", "Get LinkedIn profile link", "Tell me about his education"]
       };
     }
-    
-    if (lowerInput.includes('vibesync') || lowerInput.includes('music recommender')) {
+
+    if (lowerInput.includes('skill') || lowerInput.includes('tech') || lowerInput.includes('stack') || lowerInput.includes('framework')) {
       return {
-        content: "VibeSync is Prajwal's mood-driven music recommender built with Python, NLP, and Spotify API. It uses KNN algorithms for sentiment-to-music matching and achieved 28% increase in user engagement with 40%+ engagement lift through emotion-aware time-series data analytics.",
-        suggestions: ["How does the NLP sentiment analysis work?", "What's the KNN algorithm doing?", "Tell me about the Spotify API integration", "Any other ML projects?"]
+        content: "Modeling: XGBoost, LightGBM, PyTorch, deep learning/CNNs. GenAI: LangChain, LlamaIndex, Hugging Face, RAG, vector search. Data & MLOps: Snowflake, Databricks, Apache Spark, Airflow, Kafka, MLflow, Docker, AWS. Languages: Python, SQL, C++, PySpark.",
+        suggestions: ["Tell me about his credit risk work", "What about his RAG platform?", "Tell me about his education", "Schedule an interview"]
       };
     }
-    
-    if (lowerInput.includes('research') || lowerInput.includes('research assistant') || lowerInput.includes('current work')) {
+
+    if (lowerInput.includes('education') || lowerInput.includes('degree') || lowerInput.includes('gpa') || lowerInput.includes('university')) {
       return {
-        content: "As a Research Assistant at UT Arlington (Jul 2025-Present), Prajwal accelerated research cycles by 15% by analyzing 30+ ML papers. He built Python experiment pipelines with automated evaluation, reducing validation errors from 20 to 5 per project, and used SQL/Snowflake to reduce query time from 15 minutes to 3 minutes.",
-        suggestions: ["What ML papers is he analyzing?", "Tell me about the experiment pipelines", "How does he use Snowflake?", "What research frameworks?"]
+        content: "Prajwal holds an MS in Data Science from the University of Texas at Arlington (4.0/4.0 GPA, May 2025), and a BE in Electronics & Communication Engineering from M.S. Ramaiah Institute of Technology in Bengaluru, India.",
+        suggestions: ["Tell me about his experience", "What skills does he have?", "Schedule an interview"]
       };
     }
-    
-    // Default response with more helpful suggestions
+
+    if (lowerInput.includes('fina')) {
+      return {
+        content: "Fina is a side project \u2014 an AI-powered credit risk & advisory system combining RAG and explainable ML (SHAP visualizations) for conversational credit risk assessment. Built with Python and Streamlit.",
+        suggestions: ["Tell me about VibeSync", "What's his flagship project?", "Any other side projects?"]
+      };
+    }
+
+    if (lowerInput.includes('vibesync') || lowerInput.includes('music')) {
+      return {
+        content: "VibeSync is a side project \u2014 an AI-driven music recommender that analyzes listening patterns and mood signals to generate personalized playlists, built with Python, deep learning, and the Spotify API.",
+        suggestions: ["Tell me about Fina", "What's his flagship project?", "Any other side projects?"]
+      };
+    }
+
+    if (lowerInput.includes('forecast') || lowerInput.includes('etl') || lowerInput.includes('spark') || lowerInput.includes('mphasis')) {
+      return {
+        content: "At Mphasis, Prajwal improved revenue-forecast accuracy from 74% to 89%, migrated batch ETL workflows to Apache Spark (cutting processing time for 40M+ monthly records from 11 hours to under 3), and lifted qualified-lead conversion from 12% to 19% via customer segmentation.",
+        suggestions: ["Tell me about his JPMorgan work", "What's his flagship project?", "Schedule an interview"]
+      };
+    }
+
+    // Default response
     return {
-      content: "I can help you learn more about Prajwal's experience, current research work, verified projects, or schedule an interview. He's currently a Research Assistant at UT Arlington with proven results in fraud detection and ML systems. What would you like to know?",
-      suggestions: ["Schedule interview", "Tell me about his current research", "His fraud detection achievement", "Recent AI projects"]
+      content: "I can tell you about Prajwal's work at JPMorgan Chase and Mphasis, his portfolio optimization project, his skill set, or help you schedule time with him. What would you like to know?",
+      suggestions: ["Tell me about his experience", "What's his biggest project impact?", "Schedule an interview", "Download his resume"]
     };
   };
 
@@ -316,10 +198,11 @@ const AIChat = () => {
 
       const handleQuickAction = (action: string) => {
     switch (action) {
-      case 'schedule':
+      case 'schedule': {
         window.open('https://calendly.com/prajwalvenkatv/30min', '_blank');
         break;
-      case 'resume':
+      }
+      case 'resume': {
         const link = document.createElement('a');
         link.href = '/Prajwal_Venkatesh_Resume_.pdf';
         link.download = 'Prajwal_Venkatesh_Resume.pdf';
@@ -327,10 +210,11 @@ const AIChat = () => {
         link.click();
         document.body.removeChild(link);
         break;
-      case 'voice':
-        // Voice assistant will be connected when Supabase is integrated
+      }
+      case 'voice': {
         alert('Voice assistant feature coming soon!');
         break;
+      }
     }
   };
 
@@ -340,7 +224,7 @@ const AIChat = () => {
       <div className="fixed bottom-6 right-6 z-50">
         <Button
           size="lg"
-          className="rounded-full w-16 h-16 bg-gradient-ai hover:shadow-ai-glow transition-all duration-300 glow-ai pulse-glow"
+          className="rounded-full w-16 h-16 bg-gradient-hero hover:shadow-glow transition-all duration-300 glow-primary pulse-glow"
           onClick={() => setIsOpen(!isOpen)}
         >
           <MessageCircle className="h-8 w-8" />
@@ -350,11 +234,11 @@ const AIChat = () => {
       {/* Chat Interface */}
       {isOpen && (
         <div className="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] z-50 animate-scale-in">
-          <Card className="glass glow-ai shadow-elevation">
+          <Card className="glass glow-primary shadow-elevation">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-ai rounded-full flex items-center justify-center glow-ai">
+                  <div className="w-10 h-10 bg-gradient-hero rounded-full flex items-center justify-center glow-primary">
                     <Bot className="h-6 w-6" />
                   </div>
                   <div>
@@ -417,7 +301,7 @@ const AIChat = () => {
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                           message.type === 'user' 
                             ? 'bg-gradient-hero' 
-                            : 'bg-gradient-ai'
+                            : 'bg-gradient-hero'
                         }`}>
                           {message.type === 'user' ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
                         </div>
@@ -454,7 +338,7 @@ const AIChat = () => {
                 {isTyping && (
                   <div className="flex justify-start">
                     <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-gradient-ai rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-gradient-hero rounded-full flex items-center justify-center">
                         <Bot className="h-4 w-4" />
                       </div>
                       <div className="bg-card glass p-3 rounded-2xl">

@@ -1,137 +1,88 @@
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Lightbulb, Target, Rocket } from "lucide-react";
+import { motion } from "framer-motion";
+import { WordReveal, FadeUp, Parallax } from "./motion/Reveal";
+
+const VALUES = [
+  {
+    icon: Heart,
+    title: "Human-Centered Analytics",
+    body: "Meaningful data science begins with people, not numbers. I design every solution with empathy, because real impact comes from understanding who is behind the data.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Curious Innovator",
+    body: "From experimenting with new ML architectures to exploring emerging AI trends, I am always pushing to find better solutions.",
+  },
+  {
+    icon: Target,
+    title: "Business Impact Focus",
+    body: "Technical excellence means nothing without business value. I translate complex insights into strategies that drive measurable results.",
+  },
+  {
+    icon: Rocket,
+    title: "Growth Mindset",
+    body: "Every project is a learning opportunity. I embrace challenges, learn from setbacks, and constantly evolve.",
+  },
+];
 
 const About = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-background via-muted/5 to-background">
+    <section className="py-24 md:py-32">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <Badge variant="outline" className="glass glow-primary mb-4">
-            ✨ My Journey
-          </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            The Story Behind <span className="text-gradient-hero">The Data</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Every algorithm tells a story. Here's mine from curiosity to impact.
+        <div className="max-w-3xl mb-16">
+          <FadeUp>
+            <span className="eyebrow">About</span>
+          </FadeUp>
+          <p className="mt-5 font-display display-italic text-3xl md:text-5xl leading-[1.15]">
+            <WordReveal text="Life, unlike data, rarely fits into neat patterns, and that is exactly what keeps me curious." />
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Main Story */}
-          <Card className="glass hover-glow mb-12 glow-primary">
-            <CardContent className="p-8">
-              <div className="prose prose-lg max-w-none text-foreground">
-                <p className="text-xl leading-relaxed mb-6">
-                Every journey unfolds in its own rhythm, unexpected, beautiful, and shaped by the moments that move us forward.
-                </p>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 max-w-5xl">
+          <FadeUp delay={0.1} className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+            <p>
+              Growing up between the energy of Bangalore and the wide skies of Texas, I learned to
+              listen deeply and adapt, whether to a new country, a challenging role, or the rhythm of a pool.
+            </p>
+            <p>
+              What started as curiosity, an experiment here and a challenge accepted there, became a
+              career I could not have predicted. It is the unpredictability of real problems that keeps
+              me engaged: protecting people from loss, guiding others through practical learning, or simply
+              making numbers feel human.
+            </p>
+            <p>
+              I am here to listen, learn, and build something valuable together, whether you are a
+              recruiter, a future teammate, or just someone who sees possibility in patterns too.
+            </p>
 
-                <p className="text-xl leading-relaxed mb-6">
-                For me, life has always moved like water: sometimes rushing with bold decisions, sometimes gentle and reflective, 
-                always searching for new places to flow. Growing up between the vibrant energy of Bangalore and the wide skies of Texas, 
-                I learned to listen deeply and adapt whether in a new country, a challenging role, or simply in the rhythm of a pool.
-                </p>
-
-                <p className="text-lg leading-relaxed mb-6">
-                Professionally, my mission goes beyond just crunching numbers. What started as a random curiosity, an experiment here, 
-                a challenge accepted there, has led me to pursue a career I couldn’t have predicted. 
-                Life, unlike data, rarely fits into neat patterns. But it’s this very unpredictability that fuels my curiosity 
-                and pushes me to help others, whether it was protecting people from loss, guiding students with hands-on learning, 
-                or simply making numbers feel human.
-                </p>
-                
-                <p className="text-lg leading-relaxed">
-                I believe true connection happens when we share our stories without pretenses. Whether you’re in tech or not, 
-                a recruiter or a future teammate, I’m here to listen, learn, and build something valuable together.
-                If you’re searching for someone who’s as passionate about people as about progress, someone who sees possibility in patterns,
-                 who finds music and meaning in every day, then I hope my story sparks a conversation. I’d love to hear yours.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Values Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="glass hover-lift">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="p-3 bg-gradient-hero rounded-lg glow-primary">
-                    <Heart className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-bold">Human-Centered Analytics</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                To me, meaningful data science begins with people, not numbers. 
-                I design every solution with empathy because real impact comes from understanding who’s behind the data and how their lives will change.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass hover-lift">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="p-3 bg-gradient-ai rounded-lg glow-ai">
-                    <Lightbulb className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-bold">Curious Innovator</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  From experimenting with new ML architectures to exploring emerging AI trends, 
-                  I'm always pushing boundaries to find better solutions.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass hover-lift">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="p-3 bg-gradient-data rounded-lg glow-data">
-                    <Target className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-bold">Business Impact Focus</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Technical excellence means nothing without business value. I translate 
-                  complex insights into actionable strategies that drive measurable results.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass hover-lift">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="p-3 bg-gradient-to-r from-accent to-accent/70 rounded-lg glow-accent">
-                    <Rocket className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-bold">Growth Mindset</h3>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Every project is a learning opportunity. I embrace challenges, 
-                  learn from setbacks, and constantly evolve my skills to stay ahead.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Personal Touch */}
-          <Card className="glass hover-glow mt-12">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4 text-gradient-ai">Beyond the Code</h3>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Swimming is where I find peace and perspective. Each lap reminds me that progress isn’t just about speed, 
-              but consistency and heart. Outside the pool, you’ll find me lost in my favorite music soundtracks and 
-              writing poems turning reflections into words, and sometimes connecting with others in ways numbers never could.
+            <div className="pt-6 border-t border-border/60">
+              <div className="hud-label mb-3">Beyond the work</div>
+              <p className="text-base">
+                Swimming is where I find peace and perspective. Each lap is a reminder that progress is
+                about consistency, not just speed. Outside the pool: music, and turning reflections into words.
               </p>
-              
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Badge variant="secondary" className="text-sm">Reflection Enthusiast</Badge>
-                <Badge variant="secondary" className="text-sm">Mentor & Teacher</Badge>
-                <Badge variant="secondary" className="text-sm">Swimmer & Seeker</Badge>
-                <Badge variant="secondary" className="text-sm">Music Lover</Badge>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </FadeUp>
+
+          <div className="grid sm:grid-cols-2 gap-5 content-start">
+            {VALUES.map((v, i) => (
+              <motion.div
+                key={v.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-8% 0px" }}
+                transition={{ duration: 0.7, delay: i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                className="group p-5 rounded-xl border border-border/60 bg-card/60 dark:bg-white/[0.03] backdrop-blur-lg hover:border-primary/50 transition-colors duration-300"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <v.icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" />
+                  <span className="index-num">{String(i).padStart(2, "0")}</span>
+                </div>
+                <h3 className="font-semibold mb-2">{v.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{v.body}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

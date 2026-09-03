@@ -1,48 +1,54 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
 import TechStackBanner from "@/components/TechStackBanner";
-import SkillsVisualization from "@/components/SkillsVisualization";
-import Education from "@/components/Education";
-import Experience from "@/components/Experience";
+import About from "@/components/About";
 import ProjectShowcase from "@/components/ProjectShowcase";
+import Experience from "@/components/Experience";
+import SkillsVisualization from "@/components/SkillsVisualization";
 import Certifications from "@/components/Certifications";
 import ContactCTA from "@/components/ContactCTA";
+import ThresholdLab from "@/components/ThresholdLab";
+import CommandPalette from "@/components/CommandPalette";
 import AIChat from "@/components/AIChat";
+import Preloader from "@/components/Preloader";
+import SmoothScroll from "@/components/SmoothScroll";
+import { CustomCursor, ScrollProgress, FilmOverlay } from "@/components/Chrome";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <main>
-        <Hero />
-        <div id="about">
-          <About />
-        </div>
-        <TechStackBanner />
-        <div id="skills">
-          <SkillsVisualization />
-        </div>
-        <div id="education">
-          <Education />
-        </div>
-        <div id="experience">
-          <Experience />
-        </div>
-        <div id="projects">
+    <SmoothScroll>
+      <Preloader />
+      <CustomCursor />
+      <ScrollProgress />
+      <FilmOverlay />
+      <CommandPalette />
+
+      <div className="atmosphere" aria-hidden="true" />
+
+      <div className="relative z-[1] min-h-screen">
+        <Navigation />
+        <main>
+          <Hero />
+          <TechStackBanner />
+          <section id="about">
+            <About />
+          </section>
           <ProjectShowcase />
-        </div>
-        <div id="certifications">
+          <ThresholdLab />
+          <section id="experience">
+            <Experience />
+          </section>
+          <section id="skills">
+            <SkillsVisualization />
+          </section>
           <Certifications />
-        </div>
-        <div id="contact">
-          <ContactCTA />
-        </div>
-      </main>
-      
-      {/* AI Chat Assistant */}
-      <AIChat />
-    </div>
+          <section id="contact">
+            <ContactCTA />
+          </section>
+        </main>
+        <AIChat />
+      </div>
+    </SmoothScroll>
   );
 };
 

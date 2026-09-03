@@ -59,19 +59,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        ai: {
-          primary: "hsl(var(--ai-primary))",
-          secondary: "hsl(var(--ai-secondary))",
-        },
-        data: {
-          viz: "hsl(var(--data-viz))",
-        },
+        gain: "hsl(var(--gain))",
+        loss: "hsl(var(--loss))",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
       keyframes: {
         "accordion-down": {
           from: {
@@ -147,19 +143,18 @@ export default {
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
-        "gradient-ai": "var(--gradient-ai)",
-        "gradient-data": "var(--gradient-data)",
         "gradient-glass": "var(--gradient-glass)",
       },
       boxShadow: {
         "glow": "var(--shadow-glow)",
         "accent-glow": "var(--shadow-accent-glow)",
-        "ai-glow": "var(--shadow-ai-glow)",
         "elevation": "var(--shadow-elevation)",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        sans: ["Manrope", "system-ui", "sans-serif"],
+        body: ["Manrope", "system-ui", "sans-serif"],
+        display: ["'Instrument Serif'", "Georgia", "serif"],
+        mono: ["'IBM Plex Mono'", "'JetBrains Mono'", "monospace"],
       },
     },
   },

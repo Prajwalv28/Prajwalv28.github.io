@@ -1,330 +1,326 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Play, TrendingUp, Brain, Database } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Github, Play, Plus } from "lucide-react";
+import ProjectVisual, { VisualKind } from "./ProjectVisual";
+import { WordReveal, FadeUp } from "./motion/Reveal";
 
 interface Project {
   id: string;
   title: string;
+  oneLiner: string;
   description: string;
-  impact: string;
+  visual: VisualKind;
   tech: string[];
-  category: 'ml' | 'analytics' | 'automation';
-  metrics: {
-    label: string;
-    value: string;
-    change: string;
-  }[];
-  demoAvailable: boolean;
-  featured: boolean;
+  metrics: { label: string; value: string }[];
+  context: string;
+  demo?: string;
+  code?: string;
+  details?: string;
 }
 
 const projects: Project[] = [
   {
-    id: "fina",
-    title: "Fina: AI Powered Credit Risk & Advisory System",
-    description: "Fina is an innovative banking assistant platform designed to help financial teams make fast, safe, and informed decisions. Leveraging retrieval-augmented generation (RAG) and advanced machine learning, Fina streamlines credit risk assessment with conversational AI, domain-specific financial awareness, and real-time risk prediction powered by explainable SHAP visualizations.",
-    impact: "30% risk reduction for clients",
-    tech: ["Python", "Machine Learning", "RAG", "SHAP"],
-    category: 'ml',
+    id: "portfolio-engine",
+    title: "Multi Asset Portfolio Optimization Engine",
+    oneLiner: "A PyTorch covariance engine rebalancing 500+ tickers in under two seconds.",
+    description:
+      "Queried 6M+ tick level market records in Snowflake to compute covariance matrices across multi asset portfolios, with containerized ingestion pipelines on Airflow and Docker processing high frequency market feeds.",
+    visual: "frontier",
+    tech: ["Python", "PyTorch", "Snowflake", "Airflow", "Docker"],
     metrics: [
-      { label: "Top Risk Flagged", value: "2%", change: "+2%" },
-      { label: "Evaluation Time Cut", value: "15%", change: "+15%" },
-      { label: "Decision turnaround", value: "13%", change: "+13%" }
+      { label: "Sharpe Ratio", value: "1.15 → 1.82" },
+      { label: "Rebalance Latency", value: "45s → 1.8s" },
+      { label: "Tickers", value: "500+" },
     ],
-    demoAvailable: true,
-    featured: true
+    context: "Personal project",
+  },
+  {
+    id: "credit risk",
+    title: "Credit Risk Default Prediction",
+    oneLiner: "XGBoost models retrained across 95M+ lending records.",
+    description:
+      "Redesigned credit risk feature engineering workflows and retrained XGBoost models against retail and commercial portfolios, lifting discriminatory power substantially.",
+    visual: "roc",
+    tech: ["Python", "XGBoost", "Feature Engineering", "Model Validation"],
+    metrics: [
+      { label: "AUC", value: "0.79 → 0.91" },
+      { label: "Records", value: "95M+" },
+    ],
+    context: "JPMorgan Chase",
+  },
+  {
+    id: "rag-platform",
+    title: "RAG Platform for Market Intelligence",
+    oneLiner: "Analyst research time cut from 2.5 hours to under 50 minutes.",
+    description:
+      "Indexed SEC filings, earnings reports, and market disclosures in Amazon S3 using vector search and document embeddings, giving analysts conversational access to the full corpus.",
+    visual: "retrieval",
+    tech: ["LangChain", "Vector Search", "Embeddings", "AWS S3"],
+    metrics: [
+      { label: "Research Time", value: "2.5h → 50m" },
+      { label: "Speedup", value: "3×" },
+    ],
+    context: "JPMorgan Chase",
+  },
+  {
+    id: "anomaly",
+    title: "Transaction Anomaly Detection",
+    oneLiner: "False-positive screening alerts reduced from 18% to 11%.",
+    description:
+      "Recalibrated anomaly detection models using MLflow drift monitoring to catch model degradation early across enterprise payment processing channels.",
+    visual: "anomaly",
+    tech: ["Python", "MLflow", "Anomaly Detection", "Drift Monitoring"],
+    metrics: [
+      { label: "False Positives", value: "18% → 11%" },
+      { label: "Monitored Assets", value: "$2B+" },
+    ],
+    context: "JPMorgan Chase",
+  },
+  {
+    id: "fina",
+    title: "Fina, AI Credit Risk & Advisory System",
+    oneLiner: "Conversational credit assessment with explainable ML.",
+    description:
+      "Combines retrieval augmented generation with explainable machine learning, surfacing SHAP visualizations so every risk prediction can be interrogated rather than trusted blindly.",
+    visual: "forecast",
+    tech: ["Python", "RAG", "SHAP", "Streamlit"],
+    metrics: [
+      { label: "Top-risk flagging", value: "+2%" },
+      { label: "Evaluation time", value: "−15%" },
+    ],
+    context: "Personal project",
+    demo: "https://finarag.streamlit.app",
+    code: "https://github.com/Prajwalv28/Fina-RAG-Assistant",
+  },
+  {
+    id: "etl",
+    title: "Enterprise ETL Modernization",
+    oneLiner: "40M+ monthly records, 11 hours down to under 3.",
+    description:
+      "Migrated fragmented batch ETL workflows onto Apache Spark across enterprise warehouse ecosystems, alongside automated deployment standards that lifted release success from 82% to 97%.",
+    visual: "pipeline",
+    tech: ["Apache Spark", "PySpark", "GitHub Actions", "MLflow"],
+    metrics: [
+      { label: "Runtime", value: "11h → 3h" },
+      { label: "Release Success", value: "82% → 97%" },
+    ],
+    context: "Mphasis",
   },
   {
     id: "vibesync",
-    title: "VibeSync: AI-Driven Music Recommendation",
-    description: "Intelligent music discovery platform using advanced ML algorithms to analyze user preferences, mood patterns, and social listening habits. Delivers hyper-personalized playlists with 90%+ user satisfaction rates.",
-    impact: "90%+ user satisfaction rate",
+    title: "VibeSync, AI Music Recommendation",
+    oneLiner: "Personalized playlists from listening patterns and mood signals.",
+    description:
+      "Analyzes preferences, mood patterns, and social listening habits to generate playlists that track how someone actually listens rather than what they last clicked.",
+    visual: "spectrum",
     tech: ["Python", "Deep Learning", "Spotify API", "NLP"],
-    category: 'ml',
     metrics: [
-      { label: "Users", value: "200", change: "+50%" },
-      { label: "Avg Rec Time", value: "2s", change: "-35%" },
-      { label: "Engagement", value: "+40%", change: "+40%" }
+      { label: "User satisfaction", value: "90%+" },
+      { label: "Avg. rec. time", value: "2s" },
     ],
-    demoAvailable: true,
-    featured: true
+    context: "Personal project",
+    demo: "https://vibesyncai.streamlit.app",
+    code: "https://github.com/Prajwalv28/VibeSync",
   },
   {
-    id: "nyc-taxi-trip-duration",
+    id: "nyc-taxi",
     title: "NYC Taxi Trip Duration Prediction",
-    description: "Custom deep learning and feature engineering pipeline to predict New York City taxi ride durations using spatial and temporal data. Multiple architectures and optimization techniques were compared to maximize predictive accuracy for ride-hailing and logistics use cases.",
-    impact: "Reduced RMSLE to 0.5637, enabling accurate trip time estimates.",
-    tech: ["Python", "Custom Neural Networks", "Feature Engineering", "Hyperparameter Tuning"],
-    category: 'ml',
+    oneLiner: "Custom neural nets over spatial and temporal ride data.",
+    description:
+      "Compared multiple architectures and feature engineering strategies to minimize prediction error for ride-hailing and logistics scheduling.",
+    visual: "scatter",
+    tech: ["Python", "Neural Networks", "Feature Engineering"],
     metrics: [
-      { label: "Test RMSLE", value: "0.5637", change: "best model (↓ error)" },
-      { label: "Model Architectures Compared", value: "3", change: "+2 alternatives" },
-      { label: "Features Engineered", value: "8+", change: "+4 new time/location features" }
+      { label: "Test RMSLE", value: "0.5637" },
+      { label: "Architectures", value: "3" },
     ],
-    demoAvailable: false,
-    featured: false
-  },  
-  {
-    id: "netflix-analysis",
-    title: "Netflix Content Analysis Dashboard",
-    description: "Interactive Tableau dashboard analyzing Netflix's global content catalogue by genre, rating, release year, and geographic distribution. Highlights key viewing trends and platform growth patterns using intuitive data visualizations.",
-    impact: "Provided actionable insights into top genres, regional content trends, and year-over-year additions to support business and marketing strategies.",
-    tech: ["Tableau", "Data Visualization", "Geospatial Analysis"],
-    category: "analytics",
-    metrics: [
-      { label: "Content Growth Rate", value: "19% YoY", change: "year-over-year increase" },
-      { label: "Top Genre (Most Watched)", value: "Documentaries", change: "No. 1 genre" },
-      { label: "Genre Diversity Index", value: "0.74 (Simpson's Index)", change: "catalogue variety" }
-    ],
-    demoAvailable: false,
-    featured: false
+    context: "Personal project",
+    code: "https://github.com/Prajwalv28/My_projects/tree/main/NYC%20TAXI%20TRIP%20DURATION",
   },
   {
-    id: "railflow-reservation-system",
-    title: "RailFlow Railway Reservation Analytics System",
-    description: "End-to-end desktop application for simulating and analyzing train ticketing using a Python Tkinter GUI and SQLite database. Developed comprehensive features for booking, passenger and train management, and real-time ticket status analytics including age segmentation and train-wise reporting via custom SQL queries and a user-friendly dashboard.",
-    impact: "Streamlined the process of managing railway reservations, improved ticket tracking accuracy, and enabled in-depth analysis of booking, passenger demographics, and operational efficiency.",
-    tech: ["Python", "Tkinter", "SQLite", "SQL"],
-    category: "analytics",
-    "metrics": [
-      { label: "Database Design", value: "4+ schemas", change: "Integrated booking, passenger, train, and status tables" },
-      { label: "Query Automation", value: "7+ SQL queries", change: "Automated booking reports and analytics" },
-      { label: "Process Optimization", value: "Real-time ticket and waitlist updates", change: "Boosted user/admin efficiency" }
+    id: "netflix",
+    title: "Netflix Content Analysis Dashboard",
+    oneLiner: "An interactive read on Netflix's global catalogue.",
+    description:
+      "Genre, rating, release-year, and geographic distribution trends surfaced in Tableau for business and marketing strategy.",
+    visual: "treemap",
+    tech: ["Tableau", "Data Visualization", "Geospatial Analysis"],
+    metrics: [
+      { label: "Content growth", value: "19% YoY" },
+      { label: "Genre diversity", value: "0.74" },
     ],
-    demoAvailable: false,
-    featured: false
-}
+    context: "Personal project",
+    details:
+      "https://public.tableau.com/app/profile/prajwal.venkat1754/viz/NetflixAnalysis_17562755529400/Netflix",
+  },
+  {
+    id: "railflow",
+    title: "RailFlow Reservation Analytics",
+    oneLiner: "Desktop reservation system with live ticketing analytics.",
+    description:
+      "End-to-end Tkinter and SQLite application handling booking, passenger and train management, and ticket-status analytics through custom SQL.",
+    visual: "network",
+    tech: ["Python", "Tkinter", "SQLite", "SQL"],
+    metrics: [
+      { label: "DB schemas", value: "4+" },
+      { label: "Automated queries", value: "7+" },
+    ],
+    context: "Personal project",
+    code: "https://github.com/Prajwalv28/My_projects/tree/main/RailFlow",
+  },
 ];
 
-const categoryIcons = {
-  ml: Brain,
-  analytics: TrendingUp,
-  automation: Database
-};
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-const ProjectShowcase = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-
-  const filteredProjects = selectedCategory === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory);
-
-  const handleDemoClick = (projectId: string) => {
-    // Demo functionality will be implemented with Supabase integration
-    console.log(`Opening demo for project: ${projectId}`);
-  };
+const ProjectRow = ({ project, index }: { project: Project; index: number }) => {
+  const [open, setOpen] = useState(index === 0);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-muted/10 to-background">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <Badge variant="outline" className="glass glow-accent mb-4">
-            🚀 Featured Projects
-          </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            AI Projects That <span className="text-gradient-ai">Drive Results</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real-world AI implementations delivering measurable business impact. 
-            Each project showcases end-to-end data science and ML engineering expertise.
-          </p>
-        </div>
+    <FadeUp delay={Math.min(index * 0.04, 0.2)}>
+      <div className="border-b border-border/60">
+        <button
+          onClick={() => setOpen((o) => !o)}
+          className="group flex w-full items-center gap-5 py-7 text-left sm:gap-8"
+        >
+          <span className="index-num w-8 shrink-0 tabular-nums">
+            {String(index + 1).padStart(2, "0")}
+          </span>
 
-        {/* Category Filter */}
-        <div className="flex justify-center mb-12">
-          <div className="flex flex-wrap gap-3 p-2 bg-card rounded-2xl glass">
-            {[
-              { key: 'all', label: 'All Projects', icon: '🎯' },
-              { key: 'ml', label: 'Machine Learning', icon: '🧠' },
-              { key: 'analytics', label: 'Analytics', icon: '📊' },
-              { key: 'automation', label: 'Automation', icon: '⚡' }
-            ].map((category) => (
-              <Button
-                key={category.key}
-                variant={selectedCategory === category.key ? "default" : "ghost"}
-                className={`${selectedCategory === category.key ? 'bg-gradient-hero glow-primary' : 'hover-glow'} transition-all duration-300`}
-                onClick={() => setSelectedCategory(category.key)}
-              >
-                {category.icon} {category.label}
-              </Button>
-            ))}
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h3 className="text-lg font-semibold transition-colors duration-300 group-hover:text-primary sm:text-2xl">
+                {project.title}
+              </h3>
+              <span className="hud-label shrink-0">{project.context}</span>
+            </div>
+            <p className="mt-1.5 text-sm text-muted-foreground sm:text-base">
+              {project.oneLiner}
+            </p>
           </div>
-        </div>
 
-        {/* Projects Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {filteredProjects.map((project, index) => {
-            const CategoryIcon = categoryIcons[project.category];
-            
-            return (
-              <Card 
-                key={project.id}
-                className={`glass hover-lift transition-all duration-500 ${project.featured ? 'glow-primary' : ''} ${hoveredProject === project.id ? 'scale-105' : ''}`}
-                onMouseEnter={() => setHoveredProject(project.id)}
-                onMouseLeave={() => setHoveredProject(null)}
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-gradient-ai rounded-lg glow-ai">
-                        <CategoryIcon className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-xl">{project.title}</CardTitle>
-                        {project.featured && (
-                          <Badge variant="secondary" className="mt-1">
-                            ⭐ Featured
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="space-y-6">
-                  <p className="text-muted-foreground leading-relaxed">
+          {/* peek thumbnail on desktop */}
+          <div className="hidden h-16 w-28 shrink-0 overflow-hidden rounded-lg border border-border/60 opacity-60 transition-opacity duration-300 group-hover:opacity-100 lg:block">
+            <ProjectVisual kind={project.visual} className="h-full w-full" />
+          </div>
+
+          <motion.span
+            animate={{ rotate: open ? 45 : 0 }}
+            transition={{ duration: 0.35, ease: EASE }}
+            className="shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
+          >
+            <Plus className="h-5 w-5" />
+          </motion.span>
+        </button>
+
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.55, ease: EASE }}
+              className="overflow-hidden"
+            >
+              <div className="grid gap-8 pb-10 lg:grid-cols-[1.15fr_1fr] lg:pl-13">
+                <div className="lg:pl-[3.25rem]">
+                  <p className="max-w-xl leading-relaxed text-foreground/80">
                     {project.description}
                   </p>
-                  
-                  {/* Impact Highlight */}
-                  <div className="p-4 bg-gradient-data rounded-lg glass">
-                    <div className="text-sm font-semibold text-gradient-data mb-1">
-                      Business Impact
-                    </div>
-                    <div className="text-lg font-bold">{project.impact}</div>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-border/60 px-3 py-1 font-mono text-xs text-muted-foreground"
+                      >
+                        {t}
+                      </span>
+                    ))}
                   </div>
-                  
-                  {/* Metrics */}
-                  <div className="grid grid-cols-3 gap-4">
-                    {project.metrics.map((metric, idx) => (
-                      <div key={idx} className="text-center space-y-1">
-                        <div className="text-2xl font-bold text-gradient-hero">
-                          {metric.value}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {metric.label}
-                        </div>
-                        <div className="text-xs text-accent font-semibold">
-                          {metric.change}
-                        </div>
+
+                  <div className="mt-7 flex flex-wrap gap-8">
+                    {project.metrics.map((m) => (
+                      <div key={m.label}>
+                        <div className="hud-value text-xl">{m.value}</div>
+                        <div className="hud-label mt-1">{m.label}</div>
                       </div>
                     ))}
                   </div>
-                  
-                  {/* Tech Stack */}
-                  <div className="space-y-3">
-                    <div className="text-sm font-semibold">Tech Stack</div>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 pt-4">
-                    {project.demoAvailable && (
-                      <Button 
-                        className="bg-gradient-ai hover:shadow-ai-glow transition-all duration-300 flex-1"
-                        // onClick={() => window.open('https://sample-link.com/demo', '_blank')}
-                        onClick={() => {
-                          const demoUrls = {
-                            'fina': 'https://finarag.streamlit.app',
-                            'vibesync': 'https://vibesyncai.streamlit.app',
-                            // 'nyc-taxi-trip-duration': 'https://sample-a-demo.sample-link.com',
-                            // 'netflix-analysis': 'https://sample-b-demo.sample-link.com'
-                          };
-                          window.open(demoUrls[project.id as keyof typeof demoUrls], '_blank');
-                        }}
-                      >
-                        <Play className="mr-2 h-4 w-4" />
-                        Try AI Demo
-                      </Button>
-                    )}
-                    
-                    <Button 
-                      variant="outline" 
-                      className="glass hover-glow"
-                      // onClick={() => window.open('https://github.com/sample-link', '_blank')}
-                      onClick={() => {
-                        const codeUrls = {
-                          'fina': 'https://github.com/Prajwalv28/Fina-RAG-Assistant',
-                          'vibesync': 'https://github.com/Prajwalv28/VibeSync',
-                          'nyc-taxi-trip-duration': 'https://github.com/Prajwalv28/My_projects/tree/main/NYC%20TAXI%20TRIP%20DURATION',
-                          'netflix-analysis': 'https://public.tableau.com/app/profile/prajwal.venkat1754/viz/NetflixAnalysis_17562755529400/Netflix',
-                          'railflow-reservation-system': 'https://github.com/Prajwalv28/My_projects/tree/main/RailFlow'
-                        };
-                        window.open(codeUrls[project.id as keyof typeof codeUrls], '_blank');
-                      }}
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </Button>
-                    
-                    <Button 
-                      variant="outline" 
-                      className="glass hover-glow"
-                      // onClick={() => window.open('https://sample-link.com', '_blank')}
-                      onClick={() => {
-                        const detailUrls = {
-                          'fina': 'https://github.com/Prajwalv28/Fina-RAG-Assistant/blob/main/README.md',
-                          'vibesync': 'https://github.com/Prajwalv28/VibeSync/blob/main/README.md',
-                          'nyc-taxi-trip-duration': 'https://github.com/Prajwalv28/My_projects/blob/main/NYC%20TAXI%20TRIP%20DURATION/README.md',
-                          'netflix-analysis': 'https://public.tableau.com/app/profile/prajwal.venkat1754/viz/NetflixAnalysis_17562755529400/Netflix',
-                          'railflow-reservation-system': 'https://github.com/Prajwalv28/My_projects/blob/main/RailFlow/README.md'
-                        };
-                        window.open(detailUrls[project.id as keyof typeof detailUrls], '_blank');
-                      }}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Details
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16 animate-fade-in">
-          <div className="glass p-8 rounded-3xl max-w-2xl mx-auto glow-primary">
-            <h3 className="text-2xl font-bold mb-4">
-              Want to see more projects or discuss implementations?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              I can walk through the technical details 
-              of any project that interests you.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-gradient-hero hover:shadow-glow"
-                onClick={() => {
-                  // Show all projects by removing any filter
-                  const projectsSection = document.getElementById('projects');
-                  projectsSection?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                <ExternalLink className="mr-2 h-5 w-5" />
-                View Full Portfolio
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="glass hover-glow"
-                onClick={() => window.open('https://calendly.com/prajwalvenkatv/30min', '_blank')}
-              >
-                Schedule Technical Deep Dive
-              </Button>
-            </div>
-          </div>
+                  {(project.demo || project.code || project.details) && (
+                    <div className="mt-7 flex flex-wrap gap-3">
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                        >
+                          <Play className="h-3.5 w-3.5" /> Live demo
+                        </a>
+                      )}
+                      {project.code && (
+                        <a
+                          href={project.code}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                        >
+                          <Github className="h-3.5 w-3.5" /> Code
+                        </a>
+                      )}
+                      {project.details && (
+                        <a
+                          href={project.details}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                        >
+                          <ArrowUpRight className="h-3.5 w-3.5" /> Details
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border/60 bg-card/70 dark:bg-card/30 backdrop-blur-sm">
+                  <ProjectVisual kind={project.visual} className="h-full w-full" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between px-4 py-3">
+                    <span className="hud-label">{project.visual}</span>
+                    <span className="hud-label">live</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </FadeUp>
+  );
+};
+
+const ProjectShowcase = () => {
+  return (
+    <section id="projects" className="relative border-t border-border/60 py-24 md:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <FadeUp>
+          <span className="eyebrow">Selected work</span>
+        </FadeUp>
+        <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+          <WordReveal text="Where the models actually ship" />
+        </h2>
+        <FadeUp delay={0.15}>
+          <p className="mt-5 max-w-lg text-muted-foreground">
+            {projects.length} projects. Production systems at JPMorgan Chase and
+            Mphasis, plus the things built on weekends. Every visual below is
+            rendered live, not a screenshot.
+          </p>
+        </FadeUp>
+
+        <div className="mt-16">
+          {projects.map((p, i) => (
+            <ProjectRow key={p.id} project={p} index={i} />
+          ))}
         </div>
       </div>
     </section>

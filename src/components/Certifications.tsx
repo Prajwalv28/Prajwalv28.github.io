@@ -1,171 +1,153 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Award, ExternalLink, Calendar, CheckCircle, Clock } from "lucide-react";
+import { motion } from "framer-motion";
+import { Award, ExternalLink, GraduationCap } from "lucide-react";
+import { WordReveal, FadeUp, Counter } from "./motion/Reveal";
+
+/**
+ * Add further credentials to `certifications` as you earn them. Each
+ * supports an optional `url`, which renders a "Verify" link on hover , 
+ * worth adding your Oracle credential ID link when you have it handy.
+ */
+
+interface Credential {
+  title: string;
+  issuer: string;
+  date: string;
+  url?: string;
+  placeholder?: boolean;
+}
+
+const certifications: Credential[] = [
+  {
+    title: "Oracle Cloud Infrastructure 2025 Foundations Associate",
+    issuer: "Oracle",
+    date: "2025",
+  },
+];
+
+const academic: Credential[] = [
+  {
+    title: "MS, Data Science, 4.0/4.0 GPA",
+    issuer: "The University of Texas at Arlington",
+    date: "May 2025",
+  },
+  {
+    title: "BE, Electronics & Communication Engineering",
+    issuer: "M.S. Ramaiah Institute of Technology, Bengaluru",
+    date: "2022",
+  },
+];
+
+const STATS = [
+  { to: 4.0, decimals: 1, suffix: "/4.0", label: "Graduate GPA" },
+  { to: 95, suffix: "M+", label: "Lending records modeled" },
+  { to: 2, prefix: "$", suffix: "B+", label: "Assets under stress-testing" },
+  { to: 120, suffix: "+", label: "KPIs consolidated" },
+];
+
+const CredCard = ({ c, i }: { c: Credential; i: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 28 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-8% 0px" }}
+    transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+    className={`group relative overflow-hidden rounded-xl border p-6 backdrop-blur-lg transition-colors duration-300 ${
+      c.placeholder
+        ? "border-dashed border-border bg-transparent"
+        : "border-border/60 bg-card/60 dark:bg-white/[0.03] hover:border-primary/50"
+    }`}
+  >
+    <div className="flex items-start justify-between gap-4">
+      <Award
+        className={`h-5 w-5 ${c.placeholder ? "text-muted-foreground" : "text-primary"}`}
+      />
+      <span className="index-num">{String(i + 1).padStart(2, "0")}</span>
+    </div>
+    <h4
+      className={`mt-4 font-semibold leading-snug ${
+        c.placeholder ? "text-muted-foreground" : ""
+      }`}
+    >
+      {c.title}
+    </h4>
+    <p className="mt-1.5 text-sm text-muted-foreground">{c.issuer}</p>
+    <div className="mt-4 flex items-center justify-between">
+      <span className="hud-label">{c.date}</span>
+      {c.url && (
+        <a
+          href={c.url}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-1 font-mono text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100"
+        >
+          Verify <ExternalLink className="h-3 w-3" />
+        </a>
+      )}
+    </div>
+  </motion.div>
+);
 
 const Certifications = () => {
-  const certifications = [
-    {
-      title: "AWS Cloud Practitioner",
-      organization: "Amazon Web Services",
-      year: "2025",
-      status: "completed",
-      description: "Foundational understanding of AWS cloud services, architecture, and best practices",
-      skills: ["Cloud Computing", "AWS Services", "Security", "Cost Optimization"],
-      // verificationLink: "sample-link.com"
-    },
-    {
-      title: "Oracle Cloud Infrastructure Foundations Associate",
-      organization: "Oracle",
-      year: "Expected Oct 2025",
-      status: "in-progress", 
-      description: "Comprehensive knowledge of Oracle Cloud Infrastructure services and solutions",
-      skills: ["OCI Services", "Cloud Architecture", "Database Management", "Networking"],
-      // verificationLink: "sample-link.com"
-    }
-  ];
-
-  const achievements = [
-    {
-      title: "4.0 GPA - Master's Program",
-      organization: "UT Arlington",
-      year: "2023-2025",
-      description: "Perfect academic performance in Data Science program",
-      icon: "🎓"
-    },
-    {
-      title: "$1.6M Cost Savings Achievement",
-      organization: "Valley Infosystems",
-      year: "2023",
-      description: "Delivered measurable business impact through fraud detection optimization",
-      icon: "💰"
-    },
-    {
-      title: "Research Publication Contributor",
-      organization: "UT Arlington",
-      year: "2025",
-      description: "Contributing to ML research with standardized evaluation frameworks",
-      icon: "📄"
-    }
-  ];
-
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-muted/20">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <Badge variant="outline" className="glass glow-primary mb-4">
-            🏆 Credentials & Recognition
-          </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Certifications & <span className="text-gradient-ai">Achievements</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Continuous learning and professional development backed by industry recognition
-          </p>
+    <section
+      id="credentials"
+      className="relative border-t border-border/60 py-24 md:py-36"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <FadeUp>
+          <span className="eyebrow">Credentials</span>
+        </FadeUp>
+        <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+          <WordReveal text="Numbers that hold up under questions" />
+        </h2>
+
+        <div className="mt-16 grid gap-y-14 gap-x-10 lg:grid-cols-4">
+          {STATS.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+              className="border-t-2 border-primary pt-5"
+            >
+              <div className="hud-value text-4xl tabular-nums">
+                <Counter
+                  to={s.to}
+                  decimals={s.decimals ?? 0}
+                  prefix={s.prefix ?? ""}
+                  suffix={s.suffix ?? ""}
+                />
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {s.label}
+              </p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Certifications */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center text-gradient-hero">
-            Professional Certifications
-          </h3>
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {certifications.map((cert, index) => (
-              <Card 
-                key={cert.title}
-                className="glass hover-lift animate-slide-up"
-                style={{ animationDelay: `${index * 300}ms` }}
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-3">
-                        <Award className="h-6 w-6 text-accent" />
-                        <CardTitle className="text-xl text-gradient-hero">
-                          {cert.title}
-                        </CardTitle>
-                      </div>
-                      <div className="text-muted-foreground font-semibold">
-                        {cert.organization}
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                        <Calendar className="h-3 w-3" />
-                        <span>{cert.year}</span>
-                        {cert.status === "completed" ? (
-                          <CheckCircle className="h-4 w-4 text-accent" />
-                        ) : (
-                          <Clock className="h-4 w-4 text-primary" />
-                        )}
-                      </div>
-                    </div>
-                    <Badge 
-                      className={
-                        cert.status === "completed" 
-                          ? "bg-gradient-hero" 
-                          : "bg-gradient-ai"
-                      }
-                    >
-                      {cert.status === "completed" ? "Certified" : "In Progress"}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {cert.description}
-                  </p>
-                  
-                  <div>
-                    <h4 className="font-semibold mb-2">Key Skills:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {cert.skills.map((skill) => (
-                        <Badge key={skill} variant="secondary" className="glass">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="glass hover-glow w-full"
-                    // onClick={() => window.open(`https://sample-link.com`, '_blank')}
-                  >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Verify Certificate
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+        <div className="mt-24 grid gap-12 lg:grid-cols-2">
+          <div>
+            <div className="mb-6 flex items-center gap-2">
+              <GraduationCap className="h-4 w-4 text-primary" />
+              <h3 className="hud-label text-foreground/70">Education</h3>
+            </div>
+            <div className="grid gap-4">
+              {academic.map((c, i) => (
+                <CredCard key={c.title} c={c} i={i} />
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Achievements */}
-        <div>
-          <h3 className="text-2xl font-bold mb-8 text-center text-gradient-data">
-            Key Achievements
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {achievements.map((achievement, index) => (
-              <Card 
-                key={achievement.title}
-                className="glass hover-lift text-center animate-scale-in"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <CardContent className="p-6 space-y-4">
-                  <div className="text-4xl mb-4">{achievement.icon}</div>
-                  <h4 className="font-bold text-lg text-gradient-ai">
-                    {achievement.title}
-                  </h4>
-                  <div className="text-sm text-muted-foreground font-semibold">
-                    {achievement.organization} • {achievement.year}
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {achievement.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          <div>
+            <div className="mb-6 flex items-center gap-2">
+              <Award className="h-4 w-4 text-primary" />
+              <h3 className="hud-label text-foreground/70">Certifications</h3>
+            </div>
+            <div className="grid gap-4">
+              {certifications.map((c, i) => (
+                <CredCard key={c.title} c={c} i={i} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
